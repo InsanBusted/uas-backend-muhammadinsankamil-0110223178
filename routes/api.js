@@ -17,8 +17,10 @@ router.get("/patients/:id",  PatientController.show);
 router.post("/patients", PatientController.store);
 router.put("/patients/:id", PatientController.update);
 router.delete("/patients/:id", PatientController.destroy);
-router.get('/search/:name', PatientController.search);
-router.get('/status/positive', PatientController.statusPositive);
+router.get('/patients/search/:name', PatientController.search);
+router.get('/patients/status/positive', PatientController.statusPositive);
+router.get('/patients/status/dead', PatientController.statusDead);
+router.get('/patients/status/recovered', PatientController.statusRecovered);
 
 // Membuat routing patient
 

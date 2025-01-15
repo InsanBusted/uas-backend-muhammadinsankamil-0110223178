@@ -135,31 +135,70 @@ async search(req, res) {
   }
 }
 
-// Method to get patients with 'positive' status
 async statusPositive(req, res) {
   try {
-    const patients = await Patient.findByStatus('positive');
-    
+    const patients = await Patient.findByStatus("positive");
     if (patients.length === 0) {
       return res.status(404).json({
-        message: "No positive status patients found",
+        message: "Pasien dengan status 'positive' tidak ditemukan",
       });
     }
 
-    const data = {
-      message: "Patients with positive status",
+    return res.status(200).json({
+      message: `Menampilkan data pasien dengan status Positive`,
       data: patients,
-    };
-
-    return res.status(200).json(data);
+    });
   } catch (err) {
     const data = {
-      message: "Error occurred while retrieving data",
+      message: "Terjadi kesalahan",
       error: err.message,
     };
     res.status(500).json(data);
   }
 }
+async statusDead(req, res) {
+  try {
+    const patients = await Patient.findByStatus("dead");
+    if (patients.length === 0) {
+      return res.status(404).json({
+        message: "Pasien dengan status 'dead' tidak ditemukan",
+      });
+    }
+
+    return res.status(200).json({
+      message: `Menampilkan data pasien dengan status Dead`,
+      data: patients,
+    });
+  } catch (err) {
+    const data = {
+      message: "Terjadi kesalahan",
+      error: err.message,
+    };
+    res.status(500).json(data);
+  }
+}
+async statusRecovered(req, res) {
+  try {
+    const patients = await Patient.findByStatus("recovered");
+    if (patients.length === 0) {
+      return res.status(404).json({
+        message: "Pasien dengan status 'recovered' tidak ditemukan",
+      });
+    }
+
+    return res.status(200).json({
+      message: `Menampilkan data pasien dengan status Recovered`,
+      data: patients,
+    });
+  } catch (err) {
+    const data = {
+      message: "Terjadi kesalahan",
+      error: err.message,
+    };
+    res.status(500).json(data);
+  }
+}
+  
 
 
 }

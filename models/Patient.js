@@ -108,6 +108,7 @@ static async delete(id) {
 static searchByName(name) {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM patients WHERE name LIKE ?";
+    // console.log(sql)
     db.query(sql, [`%${name}%`], (err, results) => {
       if (err) {
         reject(err);
@@ -117,10 +118,11 @@ static searchByName(name) {
     });
   });
 }
-static findByStatus(status) {
+
+static findByStatus(positive) {
   return new Promise((resolve, reject) => {
     const sql = "SELECT * FROM patients WHERE status = ?";
-    db.query(sql, [status], (err, results) => {
+    db.query(sql, [positive], (err, results) => {
       if (err) {
         reject(err);
       } else {
@@ -129,6 +131,31 @@ static findByStatus(status) {
     });
   });
 }
+static findByStatus(dead) {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM patients WHERE status = ?";
+    db.query(sql, [dead], (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}
+static findByStatus(recovered) {
+  return new Promise((resolve, reject) => {
+    const sql = "SELECT * FROM patients WHERE status = ?";
+    db.query(sql, [recovered], (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  });
+}
+
   
 }
 
